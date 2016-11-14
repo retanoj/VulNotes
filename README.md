@@ -3,14 +3,23 @@
 ## Requirements
 
 Flask==0.11.1
+
 Flask-Bootstrap==3.3.7.0
+
 flask-marshmallow==0.7.0
+
 Flask-Migrate==2.0.0
+
 Flask-RESTful==0.3.5
+
 Flask-Script==2.0.5
+
 Flask-SQLAlchemy==2.1
+
 gunicorn==19.6.0
+
 PyJWT==1.4.2
+
 mysql-connector==2.1.3
 
 ## Usage
