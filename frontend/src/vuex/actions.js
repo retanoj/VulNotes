@@ -2,7 +2,7 @@ import Vue from 'vue'
 import * as types from './mutation-types'
 import * as config from '../config'
 
-var host_api = config.HOST_API
+var host_api = config.HOST_VUL_API
 
 var vulnotelist = Vue.resource(host_api +'/vulnotelist')
 var vultypelist = Vue.resource(host_api +'/vultypelist')
@@ -10,7 +10,8 @@ var vulstatus   = Vue.resource(host_api +'/vulstatus{/id}')
 var vulnote     = Vue.resource(host_api +'/vulnote{/id}')
 var vulcount    = Vue.resource(host_api +'/vulcount')
 var vulnotebrieflist = Vue.resource(host_api +'/vulnotebrieflist')
-var login       = Vue.resource(host_api +'/login')
+
+var login       = Vue.resource(config.HOST_COMM_API +'/login')
 
 // 登录
 export const getLogin = () => {

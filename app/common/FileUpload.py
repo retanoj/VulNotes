@@ -6,7 +6,7 @@ import random
 import string
 from flask_restful import Resource
 from flask import request, url_for, send_from_directory
-from ..utils import errorRequest, successRequest
+from app.utils import errorRequest, successRequest
 from config import basedir
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
@@ -20,6 +20,7 @@ def allowed_file(filename):
 
 def gen_filename(filename):
     return str(int(time.time())) +''.join(random.sample(string.ascii_letters+string.digits, 5)) +'.' +filename.rsplit('.', 1)[1]
+
 
 class FileUpload(Resource):
     def post(self, filename):

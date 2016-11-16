@@ -3,8 +3,8 @@
 import jwt
 import time
 from flask_restful import Resource
-from ..utils import successRequest
-from ..interceptor.auth import SECRET_KEY
+from app.utils import successRequest
+from app.interceptor.auth import SECRET_KEY
 
 
 class Login(Resource):

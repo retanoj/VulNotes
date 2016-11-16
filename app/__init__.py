@@ -21,6 +21,9 @@ def create_app(config_name):
     ma.init_app(app)
 
     from vul_notes import vn_bp
-    app.register_blueprint(vn_bp, url_prefix='/api')
+    app.register_blueprint(vn_bp, url_prefix='/vul')
+
+    from common import comm
+    app.register_blueprint(comm, url_prefix='/comm')
 
     return app
