@@ -27,7 +27,7 @@ export function configRouter(router) {
         }
 
         if (transition.to.guest){
-            if (token){
+            if (transition.to.name === 'login' && token){
                 transition.redirect('/')
             }
         }
