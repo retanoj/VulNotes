@@ -31,7 +31,7 @@ export var router = new VueRouter({
 })
 configRouter(router)
 
-Vue.http.interceptors.push(auth)
+Vue.http.interceptors.push(auth(router))
 router.start(App, '#app')
 console.log('Welcome!')
 
