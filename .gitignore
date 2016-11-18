@@ -1,8 +1,5 @@
 # Created by https://www.gitignore.io/api/intellij,node,python
 
-#static
-/static/
-
 #MAC
 .DS_Store
 
