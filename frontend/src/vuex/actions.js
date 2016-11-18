@@ -72,10 +72,10 @@ export const updateRecord = ({dispatch}, id, record) => {
 
 // 插入一条漏洞，按id
 export const insertRecord = ({dispatch}, record) => {
-  var save_prom = vulnotelist.save(record)
-  var get_prom  = vulnotebrieflist.get()
-  return Promise.all([save_prom, get_prom]).then(([s,g]) => {
-    dispatch(types.SET_RECORDLIST, g.json().data)
+  return vulnotelist.save(record).then((_) => {
+    vulnotebrieflist.get().then((resp) => {
+      dispatch(types.SET_RECORDLIST, resp.json().data)
+    })
   })
 }
 
