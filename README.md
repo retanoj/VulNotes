@@ -24,6 +24,10 @@ npm install
 # 若部署URL为http://a.b.com/vulnotes/, 则将PublicPath设置为'/vulnotes/'
 change config/index.js: build: assetsPublicPath field
 
+# bootstrap-datetimepicker
+unzip frontend/static/bootstrap-datetimepicker-master.zip
+mv frontend/static/bootstrap-datetimepicker-master frontend/node_modules/bootstrap-datetimepicker
+
 # 测试环境 localhost:8080
 npm run dev
 
