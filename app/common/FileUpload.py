@@ -28,7 +28,7 @@ class FileUpload(Resource):
         if file and allowed_file(file.filename):
             filename = gen_filename(filename)
             file.save(os.path.join(UPLOAD_FOLDER, filename))
-            return successRequest(url_for('api.fileupload', filename=filename))
+            return successRequest(url_for('comm.fileupload', filename=filename))
 
         return errorRequest()
 
