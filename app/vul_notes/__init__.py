@@ -3,7 +3,7 @@
 from flask import Blueprint
 from flask_restful import Api
 
-from VulNotes import VulCount, VulTypeList, VulStatus,VulNote, VulNoteList, VulNoteBriefList
+from VulNotes import VulTypeList, VulStatus,VulNote, VulNoteList, VulNoteBriefList
 
 vn_bp = Blueprint('vul', __name__)
 api = Api(vn_bp)
@@ -11,8 +11,6 @@ api = Api(vn_bp)
 api.add_resource(VulNoteList, '/vulnotelist')
 
 api.add_resource(VulNoteBriefList, '/vulnotebrieflist')
-
-api.add_resource(VulCount, '/vulcount')
 
 api.add_resource(VulNote, '/vulnote/<int:id>')
 
