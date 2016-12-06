@@ -146,7 +146,8 @@ class VulNoteList(Resource):
             .offset(pageNum * pageSize) \
             .all()
         vrs = VulRecordSchema(many=True)
-        return successRequest(vrs.dump(vulrecords).data)
+        resp = {"total_count":VulRecord.query.count(), "items":vrs.dump(vulrecords).data}
+        return successRequest(resp)
 
     def post(self):
         """
@@ -193,22 +194,11 @@ class VulNoteBriefList(Resource):
             vulrecords = vulrecords.filter(VulRecord.vul_company.like('%' + keyword + '%'))
         elif keyword != '':
             vulrecords = vulrecords.filter(VulRecord.vul_name.like('%' + keyword + '%'))
+        total_count = vulrecords.count()
 
         vulrecords = vulrecords.limit(pageSize) \
             .offset(pageNum * pageSize) \
             .all()
         vrs = VulRecordSchema(many=True)
-        return successRequest(vrs.dump(vulrecords).data)
-
-
-class VulCount(Resource):
-
-    decorators = [auth.check]
-
-    def get(self):
-        """
-        获取漏洞总数
-        :return:
-        """
-        return successRequest(VulRecord.query.count())
-
+        resp = {"total_count":total_count, "items":vrs.dump(vulrecords).data}
+        return successRequest(resp)

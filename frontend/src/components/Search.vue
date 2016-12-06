@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import { searchBriefRecord, loadBriefVulRecords } from '../vuex/actions'
+import { loadBriefVulRecords, setSearchMod, searchBriefVulRecords } from '../vuex/actions'
 
 export default {
   vuex : {
     actions : {
-      searchBriefRecord, loadBriefVulRecords
+      loadBriefVulRecords, setSearchMod, searchBriefVulRecords
     }
   },
   data () {
@@ -41,11 +41,13 @@ export default {
       this.search_field_id = id
     },
     searchAction: function () {
-      this.searchBriefRecord(this.search_keyword, this.fields[this.search_field_id].value)
+      this.setSearchMod(this.search_keyword, this.fields[this.search_field_id].value)
+      this.searchBriefVulRecords(this.search_keyword, this.fields[this.search_field_id].value)
     },
     clearAction: function () {
-        this.loadBriefVulRecords()
-        this.search_keyword = null
+      this.setSearchMod(null, null)
+      this.search_keyword = null
+      this.loadBriefVulRecords()
     }
   },
   computed: {
@@ -59,7 +61,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .i-clear{
         position: absolute;
         right: 30px;

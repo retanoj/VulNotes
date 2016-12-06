@@ -18,13 +18,6 @@ export const getLogin = () => {
   return login.query()
 }
 
-// 获取一组漏洞记录
-// export const loadVulRecords = ({dispatch}, pageNum=1, pageSize=20) => {
-//   return vulnotelist.get({'pageNum':pageNum, 'pageSize':pageSize}).then((resp) => {
-//     dispatch(types.SET_RECORDLIST, resp.json().data)
-//   })
-// }
-
 // 获取一条漏洞记录，按id
 export const getVulRecord = ({dispatch}, id) => {
   return vulnote.query({id:id})
@@ -33,6 +26,13 @@ export const getVulRecord = ({dispatch}, id) => {
 // 获取一组漏洞记录简要信息
 export const loadBriefVulRecords = ({dispatch}, pageNum=1, pageSize=20) => {
   return vulnotebrieflist.get({'pageNum':pageNum, 'pageSize':pageSize}).then((resp) => {
+    dispatch(types.SET_RECORDLIST, resp.json().data)
+  })
+}
+
+// 搜索一组漏洞记录简要信息
+export const searchBriefVulRecords = ({dispatch}, keyword=null, field=null, pageNum=1, pageSize=20) => {
+  return vulnotebrieflist.get({'keyword':keyword, 'field':field, 'pageNum':pageNum, 'pageSize':pageSize}).then((resp) => {
     dispatch(types.SET_RECORDLIST, resp.json().data)
   })
 }
@@ -79,9 +79,7 @@ export const insertRecord = ({dispatch}, record) => {
   })
 }
 
-// 按 关键词，字段 搜索
-export const searchBriefRecord = ({dispatch}, keyword, field) => {
-  return vulnotebrieflist.get({'keyword':keyword, 'field':field}).then((resp) => {
-    dispatch(types.SET_RECORDLIST, resp.json().data)
-  })
+// 设置搜索Mod
+export const setSearchMod = ({dispatch}, kw, f) => {
+  dispatch(types.SET_KEYWORD_FIELD, kw, f)
 }

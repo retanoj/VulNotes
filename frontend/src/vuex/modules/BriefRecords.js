@@ -14,12 +14,14 @@ vul_find_date   datetime
 */
 
 const state = {
-  RecordsList: []
+  RecordsList: [],
+  TotalCount: 0,
 }
 
 const mutations = {
-  [SET_RECORDLIST] (state, list) {
-    state.RecordsList = list
+  [SET_RECORDLIST] (state, data) {
+    state.RecordsList = data.items
+    state.TotalCount  = data.total_count
   },
   [SET_RECORDSTATUS] (state, id, status) {
     for(var i in state.RecordsList){
@@ -44,6 +46,7 @@ const mutations = {
     for(var i in state.RecordsList){
       if (state.RecordsList[i].id == id){
         state.RecordsList.splice(i, 1)
+        state.TotalCount -= 1
       }
     }
   }

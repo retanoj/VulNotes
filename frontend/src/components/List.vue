@@ -59,7 +59,7 @@ import Pagination from './Pagination'
 import search from './Search'
 import vulTemplate from './VulTemplate'
 import itemComponent from './Item'
-import { changeRecordStatus, getVulRecordsCnt,
+import { changeRecordStatus, getVulRecordsCnt, searchBriefVulRecords,
          deleteRecord, loadBriefVulRecords, getVulType } from '../vuex/actions'
 
 export default {
@@ -74,11 +74,14 @@ export default {
   },
   vuex: {
     getters: {
-      RecordsList: ({ Records }) => Records.RecordsList
+      RecordsList: ({ Records }) => Records.RecordsList,
+      TotalCount : ({ Records }) => Records.TotalCount,
+      SearchKeyword: ({ SearchMod }) => SearchMod.Keyword,
+      SearchField: ({ SearchMod }) => SearchMod.Field
     },
     actions: {
-      changeRecordStatus, getVulRecordsCnt,
-      deleteRecord, loadBriefVulRecords, getVulType
+      changeRecordStatus, deleteRecord, loadBriefVulRecords,
+      getVulType, searchBriefVulRecords
     }
   },
   data () {
@@ -96,7 +99,6 @@ export default {
   },
   ready () {
     this.getVulType()
-    this.setPagination()
     this.changePageNum(1)
   },
   computed:{
@@ -121,28 +123,17 @@ export default {
     // 换页查看
     changePageNum (pageNum) {
       this.current_pageNum = pageNum
-      console.log('go page: ' +pageNum)
-      this.loadBriefVulRecords(this.current_pageNum, this.pageSize)
-    },
-
-    // 设置总页数
-    setPagination () {
-      var vm = this
-      this.getVulRecordsCnt().then(function(resp){
-        var n = resp.json().data
-        var pn = parseInt(n / vm.pageSize)
-        if (n % vm.pageSize != 0){
-          pn += 1
-        }
-        vm.all_pageNum = pn
-      })
+      if (this.SearchKeyword != null) {
+        this.searchBriefVulRecords(this.SearchKeyword, this.SearchField, this.current_pageNum, this.pageSize)
+      } else {
+        this.loadBriefVulRecords(this.current_pageNum, this.pageSize)
+      }
     },
 
     // 删除一条记录
     removeRecord (vid) {
       if ( confirm("确认删除？") ){
         this.deleteRecord(vid)
-        this.setPagination()
       }
     },
 
@@ -185,6 +176,14 @@ export default {
           this.choose_items.push(this.RecordsList[idx].id)
         }
       }
+    },
+    'TotalCount' (newVal, oldVal) {
+      console.log('watch TotalCount changed ', oldVal, newVal)
+      var pn = parseInt(this.TotalCount / this.pageSize)
+      if (this.TotalCount % this.pageSize != 0){
+        pn += 1
+      }
+      this.all_pageNum = pn
     }
   }
 }

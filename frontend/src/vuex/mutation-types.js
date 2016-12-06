@@ -4,3 +4,5 @@ export const UPDATE_RECORD  = 'UPDATE_RECORD'
 export const DEL_RECORD     = 'DEL_RECORD'
 
 export const SET_VULTYPELIST = 'SET_VULTYPELIST'
+
+export const SET_KEYWORD_FIELD = 'SET_KEYWORD_FIELD'
