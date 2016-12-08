@@ -187,7 +187,7 @@ export default {
         console.log(error)
       })
     } else {
-      vm.record.vul_type_id = 8 // 获取'其他'的vul_type_id值
+      vm.record.vul_type_id = 1
       vm.record.vul_status  = 'unresolved'
       vm.record.vul_level   = 'low'
       vm.record.vul_find_date = new Date()
