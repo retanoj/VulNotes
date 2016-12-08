@@ -43,6 +43,8 @@ class VulType(db.Model):
         db.session.add(VulType('代码执行'))
         db.session.add(VulType('任意文件操作'))
         db.session.add(VulType('逻辑漏洞'))
+        db.session.add(VulType('信息泄露'))
+        db.session.add(VulType('越权漏洞'))
         db.session.add(VulType('其他'))
         db.session.commit()
 
