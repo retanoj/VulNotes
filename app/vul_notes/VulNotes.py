@@ -1,5 +1,5 @@
 # coding:utf-8
-
+import datetime
 from flask_restful import Resource
 from flask import request
 from ..models import VulRecord, VulRecordSchema
@@ -30,6 +30,10 @@ class VulStatus(Resource):
             return errorRequest("status is not right")
 
         vr.vul_status = postdata.get('status')
+        if postdata.get('status') == 'resolved':
+            vr.vul_solve_date = datetime.datetime.now()
+        else:
+            vr.vul_solve_date = None
         vr.update()
         return successRequest()
 
