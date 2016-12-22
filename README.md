@@ -1,14 +1,10 @@
 # VulNotes 漏洞记录工具
 
-## Requirements
+Vue 1.0 + Flask 编写的一个小记录工具。长这样：
 
-Flask==0.11.1
+![](screenshot.png)
 
-Vue==1.0.26
-
-gunicorn==19.6.0
-
-PyJWT==1.4.2
+![](screenshot2.png)
 
 
 ## Usage
