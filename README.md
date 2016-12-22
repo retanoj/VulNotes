@@ -34,7 +34,13 @@ npm run build
 ### Backend
 
 ```bash
-# 用gunicorn启动flask app
+# 填写数据库信息
+$ vim config.py
+
+# 部署数据库
+$ python web.py deploy
+
+# 用gunicorn启动
 $ ./run.sh
 ```
 
