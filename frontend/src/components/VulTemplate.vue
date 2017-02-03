@@ -90,21 +90,21 @@ export default {
       + '<div class="row clearfix">'
       + '<div class="col-md-12 column">'
       + '<div style="width:160px"></div><div class="page-header"><h3>' +record.vul_name +'</h3></div>'
-      + '<dl class="dl-horizontal">'
-      + '<dt>漏洞类型: </dt><dd>' +v_type +'</dd>'
-      + '<dt>漏洞等级: </dt><dd>' +vl2cn[record.vul_level] +'</dd>'
-      + '<dt>漏洞内容: </dt><dd>' +record.vul_detail +'</dd>'
+      + '<dl>'
+      + '<dt>漏洞类型: ' +v_type +'</dt>'
+      + '<dt>漏洞等级: ' +vl2cn[record.vul_level] +'</dt>'
+      + '<dt>漏洞内容: </dt>'
+      + '<dt><br></dt><dd>' +record.vul_detail +'</dd>'
       + '</dl>'
       + '</div></div></div>'
       return note
     },
     makeNoteAfter (content){
-      var note = content
-      note += '<style>'
+      var _style = '<style>'
       + '.dl-horizontal dt { width: 80px; text-align: left; }'
       + '.dl-horizontal dd { margin-left: 85px }'
       + '</style>'
-      return note
+      return _style + content
     }
   }
 }
