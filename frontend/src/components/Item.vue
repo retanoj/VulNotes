@@ -190,7 +190,7 @@ export default {
       vm.record.vul_type_id = 1
       vm.record.vul_status  = 'unresolved'
       vm.record.vul_level   = 'low'
-      vm.record.vul_find_date = new Date()
+      vm.record.vul_find_date = formatDate(new Date())
     }
     /* }}} */
   },
