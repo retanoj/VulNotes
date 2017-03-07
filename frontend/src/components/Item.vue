@@ -200,6 +200,8 @@ export default {
       var vm = this
       // 富文本回填“细节”
       this.record.vul_detail = $('#editor').summernote('code')
+      this.record.vul_find_date = formatDate(this.record.vul_find_date)
+      this.record.vul_solve_date = formatDate(this.record.vul_solve_date)
 
       if (this.checkFormValidate()){
         if (this.record.id == null) {
